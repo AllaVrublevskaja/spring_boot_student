@@ -1,8 +1,20 @@
 package com.student.springbootstudent.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import lombok.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
@@ -19,37 +31,20 @@ public class Grade {
     @Column(name = "value")
     private int value;
 
-//    @Column(name = "student_id")
-//    private int studentId;
-//
-//    @Column(name = "course_id")
-//    private int course_id;
+    @Column(name = "student_id",insertable=false, updatable=false)
+    private int studentId;
+
+    @Column(name = "course_id",insertable=false, updatable=false)
+    private int courseId;
+
+    @JsonBackReference
     @ManyToOne
-//    @ToString.Exclude
     @JoinColumn(name= "student_id",referencedColumnName = "id")
     private Student student;
-    @JsonBackReference
-    public Student getStudent(){
-        return student;
-    }
 
+    @JsonBackReference
     @ManyToOne
-//    @ToString.Exclude
     @JoinColumn(name= "course_id", referencedColumnName = "id")
     private Course course;
-    @JsonBackReference
-    public Course getCourse(){
-        return course;
-    }
-    @Column(name = "student_id",insertable=false, updatable=false)
-        private int studentId;
-    @Column(name = "course_id",insertable=false, updatable=false)
-    private int coursetId;
-
-//    @Override
-//    public String toString() {
-//        return "Grade{ "+
-//                student.getName() + " " + student.getSurname() + " " +
-//                course.getName() + " " + value + " }";
-//    }
 }
+

@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentResponse {
+public class GradeResponse {
     private int id;
-    private String name;
-    private String surname;
+    private int value;
+    private int studentId;
+    private int courseId;
 }
 

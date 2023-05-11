@@ -1,4 +1,4 @@
-package com.student.springbootstudent.entity.dto.response;
+package com.student.springbootstudent.entity.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentResponse {
+public class CourseRequest {
     private int id;
     private String name;
-    private String surname;
 }
 

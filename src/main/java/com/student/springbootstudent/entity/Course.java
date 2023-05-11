@@ -2,11 +2,24 @@ package com.student.springbootstudent.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.Cascade;
 
-import java.util.ArrayList;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.List;
 
 @Data
@@ -23,25 +36,11 @@ public class Course {
     @Column(name = "name")
     private String name;
 
-//    @Column(name = "student_id",insertable=false, updatable=false)
-//    private int studentId;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "student_id",referencedColumnName = "id")
-//    private Student student;
+    @JsonIgnore
     @JsonManagedReference
     @OneToMany(mappedBy = "course")
-//    @ToString.Exclude
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JsonIgnore
+    @ToString.Exclude
+    @Cascade(CascadeType.ALL)
     private List<Grade> grades;
-//    @JsonManagedReference
-//    public List<Grade> getGrades(){
-//        return grades;
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Course{" + name + getGrades() + '}';
-//    }
 }
+

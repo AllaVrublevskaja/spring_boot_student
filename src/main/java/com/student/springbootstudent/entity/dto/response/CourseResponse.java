@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentResponse {
+public class CourseResponse {
     private int id;
     private String name;
-    private String surname;
 }
 
